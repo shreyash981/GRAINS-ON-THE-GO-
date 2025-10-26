@@ -1,0 +1,1 @@
+ GRAINS ON THE GO is a mobile-based application designed to redistribute surplus food from sources such as hotels, restaurants, caterers, and college messes to local NGOs and shelters. The app acts as a centralized platform to reduce food wastage and alleviate hunger in nearby communities by facilitating real-time food donations and deliveries.![Uploading image.png…]()
