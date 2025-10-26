@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌾 Grain on the Go</title>
+    <style>
+      :root {
+        --primary: #16a34a;
+        --primary-dark: #15803d;
+        --secondary: #facc15;
+        --bg-light: #f0fdf4;
+        --white: #ffffff;
+        --text-dark: #1e293b;
+        --text-gray: #6b7280;
+        --radius: 12px;
+        --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", Roboto, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg-light);
+        color: var(--text-dark);
+      }
+
+      /* 🌾 LOGIN PAGE */
+      #loginPage {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      }
+
+      .login-box {
+        background: white;
+        padding: 2rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        width: 90%;
+        max-width: 380px;
+        text-align: center;
+        animation: fadeIn 0.6s ease;
+      }
+
+      .login-box h1 {
+        color: var(--primary-dark);
+        margin-bottom: 1rem;
+      }
+
+      .login-box input {
+        width: 100%;
+        padding: 0.7rem;
+        margin: 0.6rem 0;
+        border-radius: var(--radius);
+        border: 1px solid #d1d5db;
+      }
+
+      .login-box button {
+        width: 100%;
+        padding: 0.7rem;
+        border-radius: var(--radius);
+        border: none;
+        background: var(--primary);
+        color: white;
+        font-weight: 600;
+        margin-top: 0.8rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .login-box button:hover {
+        background: var(--primary-dark);
+      }
+
+      .login-box p {
+        color: var(--text-gray);
+        font-size: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 🌾 Main App Hidden Initially */
+      #mainApp {
+        display: none;
+      }
+
+      /* 🌾 Header */
+      header {
+        background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        color: var(--white);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.4rem 0.8rem;
+        border-radius: var(--radius);
+        transition: 0.3s;
+      }
+
+      nav a.active,
+      nav a:hover {
+        background: white;
+        color: var(--primary);
+      }
+
+      section {
+        display: none;
+        max-width: 1100px;
+        margin: 2rem auto;
+        padding: 1rem;
+      }
+
+      section.active {
+        display: block;
+      }
+
+      h2 {
+        text-align: center;
+        color: var(--primary-dark);
+      }
+
+      .hero {
+        text-align: center;
+        padding: 4rem 1rem;
+        background: linear-gradient(180deg, #dcfce7, white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero h1 {
+        font-size: 2.3rem;
+        color: var(--primary-dark);
+      }
+
+      .hero p {
+        color: var(--text-gray);
+        max-width: 600px;
+        margin: 1rem auto;
+      }
+
+      .btn {
+        padding: 0.7rem 1.3rem;
+        border-radius: var(--radius);
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      form {
+        background: white;
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        display: grid;
+        gap: 1rem;
+      }
+
+      input,
+      select {
+        padding: 0.6rem;
+        border-radius: var(--radius);
+        border: 1px solid #d1d5db;
+        font-size: 1rem;
+      }
+
+      .safety-box {
+        border: 2px dashed var(--secondary);
+        background: #fefce8;
+        padding: 1rem;
+        border-radius: var(--radius);
+      }
+
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .card {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+
+      .card-body {
+        padding: 1rem;
+      }
+
+      .card-body h3 {
+        color: var(--primary-dark);
+        margin: 0 0 0.5rem;
+      }
+
+      .meta {
+        color: var(--text-gray);
+        font-size: 0.9rem;
+      }
+
+      .distance {
+        font-size: 0.9rem;
+        color: var(--secondary);
+        margin-top: 0.3rem;
+      }
+
+      footer {
+        background: var(--primary-dark);
+        color: white;
+        text-align: center;
+        padding: 1.5rem;
+        margin-top: 3rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 🌾 LOGIN PAGE -->
+    <div id="loginPage">
+      <div class="login-box">
+        <h1>🌾 Grain on the Go</h1>
+        <p>Welcome back! Please log in to continue.</p>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button id="loginBtn">Login</button>
+        <p>Tip: Try username <b>admin</b> & password <b>1234</b> for demo.</p>
+      </div>
+    </div>
+
+    <!-- 🌾 MAIN APP -->
+    <div id="mainApp">
+      <header>
+        <a href="#" class="brand">🌾 Grain on the Go</a>
+        <nav>
+          <ul>
+            <li><a href="#" class="active" data-target="home">Home</a></li>
+            <li><a href="#" data-target="donate">Donate Food</a></li>
+            <li><a href="#" data-target="recipients">Find Food</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <section id="home" class="active">
+        <div class="hero">
+          <h1>Share Food, Spread Hope 🌿</h1>
+          <p>
+            Help bridge the gap between surplus food and hungry communities. Donate safely, and see your impact live.
+          </p>
+          <button class="btn btn-primary" data-target="donate">Start Donating</button>
+        </div>
+      </section>
+
+      <section id="donate">
+        <h2>Donate Food Responsibly</h2>
+        <p style="text-align:center; color:var(--text-gray);">
+          Ensure food safety and share details below.
+        </p>
+
+        <form id="donationForm">
+          <input id="donorName" placeholder="Donor Name / Organization" required />
+          <select id="foodType" required>
+            <option value="">Select Food Type</option>
+            <option>Cooked Meals</option>
+            <option>Bakery Items</option>
+            <option>Dry Rations</option>
+          </select>
+          <input id="quantity" type="number" placeholder="Quantity (servings)" required />
+          <input id="pickupTime" type="datetime-local" required />
+          <input id="location" placeholder="Pickup Location" required />
+
+          <div class="safety-box">
+            <strong>Food Safety Guidelines:</strong>
+            <ul>
+              <li>Freshly prepared within last 4 hours.</li>
+              <li>Pack in clean, sealed containers.</li>
+              <li>No previously served food.</li>
+              <li>Label food type and preparation time.</li>
+            </ul>
+            <label>
+              <input type="checkbox" id="safetyConfirm" required /> I comply with these safety rules.
+            </label>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Submit Donation</button>
+        </form>
+      </section>
+
+      <section id="recipients">
+        <h2>Available Food Nearby</h2>
+        <p style="text-align:center; color:var(--text-gray);">
+          View and claim food from donors near your area.
+        </p>
+
+        <input
+          id="recipientLocation"
+          placeholder="Search by area..."
+          style="width:100%; padding:0.6rem; border-radius:var(--radius); border:1px solid #d1d5db;"
+        />
+        <button id="findBtn" class="btn btn-primary" style="margin-top:1rem;">Find Food</button>
+
+        <div id="recipientResults" class="card-grid"></div>
+      </section>
+
+      <footer>©️ 2025 Grain on the Go — Together Against Hunger 🍽️</footer>
+    </div>
+
+    <script>
+      // 🌾 LOGIN LOGIC
+      document.getElementById("loginBtn").addEventListener("click", () => {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (username === "admin" && password === "1234") {
+          document.getElementById("loginPage").style.display = "none";
+          document.getElementById("mainApp").style.display = "block";
+        } else {
+          alert("❌ Invalid credentials. Try again!");
+        }
+      });
+
+      // 🌾 NAVIGATION
+      document.querySelectorAll("nav a, .btn[data-target]").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = link.dataset.target;
+          if (!target) return;
+
+          document.querySelectorAll("section").forEach((s) => s.classList.remove("active"));
+          document.getElementById(target).classList.add("active");
+
+          document.querySelectorAll("nav a").forEach((a) => a.classList.remove("active"));
+          if (link.tagName === "A") link.classList.add("active");
+
+          if (target === "recipients") displayDonations();
+        });
+      });
+
+      // 🌾 DONATION DATA
+      let donations = [
+        {
+          donor: "Hotel Sunrise",
+          food: "Cooked Meals - 20 servings",
+          location: "Koramangala",
+          distance: 1.5,
+          img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+        },
+        {
+          donor: "Green Bakery",
+          food: "Bread Loaves - 10 pcs",
+          location: "Indiranagar",
+          distance: 3.2,
+          img: "https://images.unsplash.com/photo-1613145993485-64aa48eeced1",
+        },
+      ];
+
+      // 🌾 SUBMIT DONATION
+      document.getElementById("donationForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!document.getElementById("safetyConfirm").checked) {
+          alert("⚠️ Please confirm safety guidelines.");
+          return;
+        }
+
+        const newDonation = {
+          donor: document.getElementById("donorName").value,
+          food: `${document.getElementById("foodType").value} - ${document.getElementById("quantity").value} servings`,
+          location: document.getElementById("location").value,
+          distance: Math.random() * 5 + 1,
+          img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+        };
+
+        donations.unshift(newDonation);
+        alert("✅ Donation added successfully!");
+        e.target.reset();
+        displayDonations();
+      });
+
+      // 🌾 DISPLAY DONATIONS
+      function displayDonations(filter = "") {
+        const list = document.getElementById("recipientResults");
+        list.innerHTML = "";
+
+        const filtered = donations.filter((d) =>
+          d.location.toLowerCase().includes(filter.toLowerCase())
+        );
+
+        if (filtered.length === 0) {
+          list.innerHTML = `<p style="color:var(--text-gray); text-align:center;">No food found in "${filter}"</p>`;
+          return;
+        }
+
+        filtered.forEach((d) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <img src="${d.img}" alt="${d.food}" />
+            <div class="card-body">
+              <h3>${d.food}</h3>
+              <p class="meta">Donor: ${d.donor}</p>
+              <p class="distance">📍 ${d.location} — ${d.distance.toFixed(1)} km away</p>
+              <button class="btn btn-primary claimBtn">Claim Food</button>
+            </div>
+          `;
+          card.querySelector(".claimBtn").addEventListener("click", () => {
+            alert(`✅ You have claimed "${d.food}" from ${d.donor}.`);
+          });
+          list.appendChild(card);
+        });
+      }
+
+      // 🌾 SEARCH BUTTON
+      document.getElementById("findBtn").addEventListener("click", () => {
+        const area = document.getElementById("recipientLocation").value.trim();
+        displayDonations(area);
+      });
+
+      // Initial Display
+      displayDonations();
+    </script>
+  </body>
+</html>
